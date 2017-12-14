@@ -53,7 +53,7 @@ jobs:
       - conda create -n test-environment python=$PYTHON_VERSION
       - source activate test-environment
       - conda install param
-      - conda install pandas      
+      - conda install pandas
       - conda install -c bokeh "bokeh>=0.12.10"
       - conda install -c ioam "holoviews>=1.9.0"
       - conda install -c conda-forge notebook ipython sphinx beautifulsoup4 graphviz selenium phantomjs
@@ -76,11 +76,11 @@ jobs:
             # should make this deploy somewhere for PRs etc, and only to the
             # main site on specific tag format.
             tags: true
-	- provider: pages
+        - provider: pages
           skip_cleanup: true
-	  github_token: $GITHUB_TOKEN
-	  local_dir: ./_build/html
-	  repo: ioam-docs/parambokeh-master
+          github_token: $GITHUB_TOKEN
+          local_dir: ./_build/html
+          repo: ioam-docs/parambokeh-master
 
     - stage: anaconda_deploy
       env: PYTHON_VERSION="3.6"
@@ -92,6 +92,3 @@ jobs:
       script:
       - conda build conda.recipe
       - anaconda -t $CONDA_UPLOAD_TOKEN upload --force -u cball $HOME/miniconda/conda-bld/noarch/parambokeh*.tar.bz2
-
-
-
