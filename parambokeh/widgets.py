@@ -25,7 +25,8 @@ def StaticText(*args, **kw):
     return Div(*args, **kw)
 
 def Checkbox(*args, **kw):
-    kw['active'] = [kw.pop('value')]
+    val = kw.pop('value')
+    kw['active'] = [0] if val else []
     kw['labels'] = [kw.pop('title')]
     return CheckboxGroup(*args, **kw)
 
