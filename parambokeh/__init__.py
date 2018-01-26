@@ -10,7 +10,7 @@ import param
 from bokeh.document import Document
 from bokeh.io import push_notebook, curdoc
 from bokeh.layouts import row, column, widgetbox
-from bokeh.models.widgets import Div, Button, Toggle, TextInput
+from bokeh.models.widgets import Div, Button, CheckboxGroup, TextInput
 from bokeh.models import CustomJS
 
 try:
@@ -288,7 +288,7 @@ class Widgets(param.ParameterizedFunction):
 
         if hasattr(p_obj, 'callbacks'):
             p_obj.callbacks[id(self.parameterized)] = functools.partial(self._update_trait, p_name)
-        elif isinstance(w, Toggle):
+        elif isinstance(w, CheckboxGroup):
             if self.p.mode in ['server', 'raw']:
                 w.on_change('active', functools.partial(self.on_change, w, p_obj, p_name))
             else:
