@@ -118,6 +118,9 @@ class Widgets(param.ParameterizedFunction):
     width = param.Integer(default=300, bounds=(0, None), doc="""
         Width of widgetbox the parameter widgets are displayed in.""")
 
+    height = param.Integer(default=300, bounds=(0, None), doc="""
+        Height of widgetbox the parameter widgets are displayed in.""")
+
     label_formatter = param.Callable(default=default_label_formatter, allow_None=True,
         doc="Callable used to format the parameter names into widget labels.")
 
@@ -162,7 +165,7 @@ class Widgets(param.ParameterizedFunction):
 
         widgets, views = self.widgets()
         plots = views + plots
-        container = widgetbox(widgets, width=self.p.width)
+        container = widgetbox(widgets, width=self.p.width, height=self.p.height)
         if plots:
             view_box = column(plots)
             layout = self.p.view_position
